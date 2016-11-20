@@ -1,0 +1,36 @@
+AppBundle\Entity\Fortests:
+    dummy_{1..10}:
+        name: <name()>
+#        related_dummy: @related_dummy*
+        description: <paragraph(1)>
+        createDate:
+
+#todo https://github.com/nelmio/alice
+        #AppBundle\Entity\GenusNote:
+        #    genus.note_{1..100}:
+        #        username: <userName()>
+        #        userAvatarFilename: '50%? leanna.jpeg : ryan.jpeg'
+        #        note: <paragraph()>
+        #        createdAt: <dateTimeBetween('-6 months', 'now')>
+        #        genus: '@genus_*'
+        #
+        #
+        #name: <genus()>
+        #        subFamily: <text(20)>
+        #        speciesCount: <numberBetween(100, 100000)>
+        #        funFact: <sentence()>
+        #        isPublished: <boolean(75)>
+
+        username: <username()>
+                fullname: <firstName()> <lastName()>
+                birthDate: <date()>
+                email: <email()>
+                favoriteNumber: 50%? <numberBetween(1, 200)>
+
+        Nelmio\Entity\Group:
+            group1:
+                name: Admins
+                owner: '@user1'
+                members: <numberBetween(1, 10)>x @user*
+                created: <dateTimeBetween('-200 days', 'now')>
+                updated: <dateTimeBetween($created, 'now')>

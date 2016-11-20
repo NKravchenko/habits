@@ -1,0 +1,29 @@
+/*http://stackoverflow.com/questions/19740700/glyphicons-bootstrap-icon-font-hex-value*/
+
+.dev{
+    border: dotted black 1px;
+}
+
+/*Добавляем укзание состояния "открыт ли спойлер"*/
+a.j-spoiler-ico:after{
+    font-family: 'Glyphicons Halflings';
+    content:"\e259";
+    float: right;
+}
+
+a.j-spoiler-ico.collapsed:after{
+    content:"\e258";
+    float: right;
+    /*color: grey;*/
+}
+
+.j-min-width{
+    min-width: 480px;
+}
+.j-form-input-min-width{
+    min-width: 65px;
+}
+.j-padding-lr-null{
+    padding-left: 0px;
+    padding-right: 0px;
+}

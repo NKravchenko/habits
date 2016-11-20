@@ -1,0 +1,58 @@
+{# Даты и комментарии #}
+<table class="table" id="date_comm_result"> {# table-bordered #}
+    <tbody>
+    {% for note in goal_notes %}
+
+    <tr id="note{{ note.id }}">
+    {# ToDo добавить подсветку строк #}
+    {# class="success" or class="warning" or ...#}
+        <td> {{ note.createAt | date("j F D") }}</td>
+        <td> {{ note.resultText }}</td>
+        <td> {{ note.value }}</td>
+        <td style=" padding-right: 0px "> {# padding-left: 0px; #}
+            <div class="btn-group btn-group-sm">
+                <a href="#" class="btn btn-default" title="Редактировать"><span class="glyphicon glyphicon-edit"></span></a>
+            </div>
+        </td>
+    </tr>
+
+    {% endfor %}
+
+    {#---Редактирование заметки--------------------------------------#}
+    {#<tr class="">#}
+        {#<td></td>#}
+        {#<td>#}
+            {#<div class="row">#}
+                {#<div class="col-xs-12">#}
+                    {#<textarea class="form-control" style="resize: none"> Введите заметку </textarea>#}
+                {#</div>#}
+            {#</div>#}
+        {#</td>#}
+        {#<td>#}
+            {#<div class="row">#}
+                {#<div class="col-xs-12">#}
+                    {#<select class="form-control input-sm">#}
+                        {#<option selected>Good</option>#}
+                        {#<option>Neutral</option>#}
+                        {#<option>Negative</option>#}
+                    {#</select>#}
+                {#</div>#}
+            {#</div>#}
+        {#</td>#}
+        {#<td style=" padding-right: 0px "> &#123;&#35; padding-left: 0px; &#35;&#125;#}
+            {#&#123;&#35;<div class="btn-group btn-group-sm btn-group-vertical">&#35;&#125;#}
+            {#<a href="#" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-ok"></span></a>#}
+            {#<a href="#" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-remove"></span></a>#}
+            {#&#123;&#35;</div>&#35;&#125;#}
+        {#</td>#}
+    {#</tr>#}
+
+    {#--- Костыль. ширина колонок --------------------------#}
+    <tr>
+        <td style="width:100px"></td>
+        <td style=""></td>
+        <td style="width:100px"></td>
+        <td style="width:50px; padding: 0px"></td>
+    </tr>
+    </tbody>
+</table>

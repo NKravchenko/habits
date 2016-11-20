@@ -1,0 +1,127 @@
+{#
+   ┌───────────┐ extends  ┌───────────┐
+   │ *U are HERE  :)   │--------->│ base.html.twig     │
+   └───────────┘          └───────────┘
+             |
+             | embed   ┌────────────────┐
+             | ------- │ _panel_detail.html.twig    │
+             |         └────────────────┘
+             | include
+             | ---------------------------------------------------------------------------------------┐
+             |                          |                              |                              |
+   ┌───────────┐ ┌────────────────┐ ┌────────────────┐ ┌───────────┐
+   │ title.html.twig   │ │ new_comments.html.twig     │ │dates_and_comments.html.twig│ │grapf.html.twig    │
+   └───────────┘ └────────────────┘ └────────────────┘ └───────────┘
+#}
+
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block body %}
+    {% include 'AppBundle:Goal/detail:title.html.twig' %}
+
+    {# Форма новых записей #}
+    <div class="row">
+        {% embed "AppBundle:Goal/_main:_panel_detail.html.twig" %}
+
+            {% block panel_heading %}
+                <a class="j-spoiler-ico"
+                   data-toggle="collapse"
+                   href="#collapse_new_date">
+                    Ближайшие незаполненные дни
+                </a>
+            {% endblock %}
+
+            {% block panel_body %}
+                <div id="collapse_new_date" class="panel-collapse collapse in"> {# .in - открыто по-умолчанию #}
+                    <div class="panel-body"
+                         style="padding-left: 5px; padding-right: 5px;"> {# TODO Стили перенести в css#}
+                        {% include 'AppBundle:Goal/detail:new_comments.html.twig' %}
+                    </div>
+                </div>
+            {% endblock %}
+
+            {% block footer %}
+                <div class="panel-footer">
+                    <a class="btn btn-default"
+                       href="#">
+                        Полный список
+                    </a>
+                </div>
+            {% endblock %}
+
+        {% endembed %}
+    </div>
+
+    {# Даты и комментарии #}
+    <div class="row">
+        {% embed "AppBundle:Goal/_main:_panel_detail.html.twig" %}
+            {% block panel_heading %}
+                <a class="j-spoiler-ico"
+                   data-toggle="collapse"
+                   href="#collapse_dates_and_comm">
+                    Мои успехи с {{ notes_date_min }} по {{ notes_date_max }}
+                </a>
+            {% endblock %}
+
+            {% block panel_body %}
+                {% if  goal_notes | length > 0 %}
+                    <div id="collapse_dates_and_comm" class="panel-collapse collapse in">
+                        {% include 'AppBundle:Goal/detail:dates_and_comments.html.twig' %}
+                    </div>
+                {% else %}
+                    Вы еще не фиксировали успехи
+                {% endif %}
+            {% endblock %}
+
+            {% block footer %}
+                {% if  goal_notes | length > 0 %}
+                    <div class="panel-footer">
+                        <a class="btn btn-default"
+                           href="{{ path('goal_detail_notes', {'id': goal_info.id }) }}">
+                            Полный список
+                        </a>
+                    </div>
+                {% endif %}
+            {% endblock %}
+
+        {% endembed %}
+    </div>
+
+    {# График #}
+    <div class="row">
+        {% embed "AppBundle:Goal/_main:_panel_detail.html.twig" %}
+            {% block panel_heading %}
+                <a class="j-spoiler-ico"
+                   data-toggle="collapse"
+                   href="#collapse_grapf">
+                    График с ... по {{ "now"|date("j F, Y") }}
+                </a>
+            {% endblock %}
+
+            {% block panel_body %}
+                <div id="collapse_grapf" class="panel-collapse collapse in">
+                    {% include 'AppBundle:Goal/grapf:grapf.html.twig' %}
+                </div>
+            {% endblock %}
+
+        {% endembed %}
+    </div>
+
+{% endblock %}
+
+
+{% block stylesheets %}
+    {{ parent() }}
+    {# График. Плагин #}
+    <link rel="stylesheet"  href="{{ asset('vendor/chartist/css/chartist.min.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {# График. Плагин #}
+    <script src="{{ asset('vendor/chartist/js/chartist.min.js') }}"></script>
+
+    {# График. Данные для построенния #}
+    {% include 'AppBundle:Goal/grapf:grapf_data.js.twig' %}
+{% endblock %}
+

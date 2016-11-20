@@ -1,0 +1,22 @@
+<div class="col-sm-6">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+
+                {% block panel_heading %}
+                {% endblock %}
+
+            </h3>
+        </div>
+        <div class="list-group">
+
+            {% block panel_body %}
+            {% endblock %}
+
+        </div>
+    </div>
+
+    {% block under_the_panel %}
+    {% endblock %}
+
+</div>

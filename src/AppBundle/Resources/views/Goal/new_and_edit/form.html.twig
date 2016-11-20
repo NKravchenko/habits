@@ -1,0 +1,16 @@
+    {{ form_row(form._token) }}
+    {{ form_errors(form) }}
+
+    {{ form_row(form.title) }}
+
+{% if id is defined %}
+    {{ form_row(form.isActive) }}
+    {{ form_row(form.result) }}
+{%  endif  %}
+
+    {{ form_row(form.description) }}
+    {{ form_row(form.inWeekend) }}
+    {{ form_row(form.dateStop) }}
+    {{ form_row(form.goalType) }}
+
+    {{ form_rest(form) }}

@@ -1,0 +1,38 @@
+<div class="row">
+
+    <div class="col-xs-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    {% block panel_heading %}
+                    {% endblock %}
+                </h3>
+            </div>
+
+            <div class="panel-body">
+                {{ form_start(form) }}
+
+                {# Ссылка на шаблон формы #}
+                {% block path_form %}
+                {% endblock %}
+            </div>
+
+            <div class="panel-footer">
+                <button type="submit" class="btn btn-primary" formnovalidate>
+                    Сохранить
+                </button>
+
+                {# Ссылка на возврат со строниы формы #}
+                <a class="btn btn-danger"
+                   href="{% block path_back %} #
+                          {% endblock %}">
+                    Отмена
+                </a>
+
+                {{ form_end(form) }}
+            </div>
+
+        </div>
+    </div>
+
+</div>

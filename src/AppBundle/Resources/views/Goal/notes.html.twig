@@ -1,0 +1,42 @@
+{#
+   ┌───────────┐ extends  ┌───────────┐
+   │ *U are HERE       │--------->│ base.html.twig     │
+   └───────────┘          └───────────┘
+             |
+             | embed   ┌────────────────┐
+             | ------- │dates_and_comments.html.twig│
+             |         └────────────────┘
+             | include
+             | -------------------------┐
+             |                          |
+   ┌───────────┐ ┌────────────────┐
+   │ title.html.twig   │ │ _panel_notes_list.html.twig│
+   └───────────┘ └────────────────┘
+#}
+
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block body %}
+    {% include 'AppBundle:Goal/detail:title.html.twig' %}
+
+    <div class="row">
+        {% embed "AppBundle:Goal/_main:_panel_notes_list.html.twig" %}
+            {% block panel_heading %}
+                Заметки с {{ date_min }} по {{ date_max }}
+            {% endblock %}
+
+            {% block panel_body %}
+                    {% include 'AppBundle:Goal/detail:dates_and_comments.html.twig' %}
+            {% endblock %}
+
+            {% block panel_footer %}
+                {{ knp_pagination_render(goal_notes) }}
+            {% endblock %}
+
+            {% block under_the_panel %}
+                <a href="{{ path('goal_detail', {'id': goal_info.id}) }}">Вернуться к обзору цели</a>
+            {% endblock %}
+
+        {% endembed %}
+    </div>
+{% endblock %}

@@ -1,0 +1,60 @@
+main_page:
+    path:     /
+    defaults: { _controller: AppBundle:Goal:actual}
+
+goals_actual:
+    path:     /goals
+    defaults: { _controller: AppBundle:Goal:actual}
+
+goals_archive:
+    path:     /archive
+    defaults: { _controller: AppBundle:Goal:archive}
+
+goal_detail:
+    path:     /detail/{id}
+    defaults: { _controller: AppBundle:Goal:detail}
+    methods:  [GET]
+    requirements:
+        id:  \d+
+
+goal_detail_notes:
+    path:     /detail/{id}/notes
+    defaults: { _controller: AppBundle:Goal:notes}
+    methods:  [GET]
+    requirements:
+         id:  \d+
+
+goal_new:
+    path:     /new
+    defaults: { _controller: AppBundle:Goal:new}
+
+goal_edit:
+    path:     /edit/{id}
+    defaults: { _controller: AppBundle:Goal:edit}
+    methods:  [GET, POST]
+    requirements:
+        id:  \d+
+
+goal_detail_note_save:
+    path:     /detail/note/save
+    defaults: { _controller: AppBundle:Goal:noteSave}
+    methods:  [POST]
+
+
+
+# Manual
+# http://symfony.com/doc/current/book/routing.html
+
+# Example
+# id:  \d+  - parameter must be a digit (i.e. a number)
+# methods:  [GET, HEAD]
+# methods:  [PUT]
+
+# Advanced Routing Example
+#article_show:
+#  path:     /articles/{_locale}/{year}/{title}.{_format}
+#  defaults: { _controller: AppBundle:Article:show, _format: html }
+#  requirements:
+#      _locale:  en|fr
+#      _format:  html|rss
+#      year:     \d+

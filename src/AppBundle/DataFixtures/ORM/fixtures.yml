@@ -1,0 +1,89 @@
+AppBundle\Entity\Goal:
+    goal_{1}:
+        title: '!!! Много заметок !!!'
+        description: <text(30)>
+        inWeekend: false
+        dateAdd: <dateTimeBetween('-3 months', '-1 months')>
+        dateUpdate: <dateTimeBetween('-1 week', 'now')>
+        dateStop: null
+        isActive: true
+        result: false
+        goalType: '@goal.type_2'
+        creator: '@user_1'
+
+    goal_{2..30}:
+        title: Цель <current()>
+        description: <text(20)>
+        inWeekend: <boolean(75)>
+        dateAdd: <dateTimeBetween('-3 months', '-1 months')>
+        dateUpdate: <dateTimeBetween('-1 months', 'now')>
+        dateStop: null
+        isActive: <boolean(50)>
+        result: <boolean(90)>
+        goalType: '@goal.type_*'
+        creator: '@user_*'
+
+AppBundle\Entity\GoalNote:
+    goal.note_{1..50}:
+        goal: '@goal_1'
+        valuetextType: '@text.type_*'
+        resultText: <text(20)>
+        createAt: <dateTimeBetween('-1 months', 'now')>
+        valueNumber: <numberBetween(1, 15)>
+        valueTime: null
+    goal.note_{51..100}:
+        goal: '@goal_*'
+        valuetextType: '@text.type_*'
+        resultText: <text(20)>
+        createAt: <dateTimeBetween('-1 months', 'now')>
+        valueNumber: <numberBetween(1, 15)>
+        valueTime: <numberBetween(30, 180)>
+
+AppBundle\Entity\User:
+    user_1:
+        username: admin
+        password: admin
+        email: admin@habits.web
+        isActive: true
+    user_{2...3}:
+        username: <firstName()>
+        password: admin
+        email: <email()>
+        isActive: <boolean(75)>
+
+#фиксированные значения
+AppBundle\Entity\GoalType:
+    goal.type_1:
+        id: '1'
+        title: 'Число'
+    goal.type_2:
+        id: '2'
+        title: 'Текст'
+    goal.type_3:
+        id: '3'
+        title: 'Время'
+
+#фиксированные значения
+AppBundle\Entity\TextType:
+    text.type_1:
+        id: '1'
+        title: 'Очень плохо'
+        importance: '-2'
+    text.type_2:
+        id: '2'
+        title: 'Плохо'
+        importance: '-1'
+    text.type_3:
+        id: '3'
+        title: 'Нейтрально'
+        importance: '0'
+    text.type_4:
+        id: '4'
+        title: 'Хорошо'
+        importance: '1'
+    text.type_5:
+        id: '5'
+        title: 'Отлично'
+        importance: '2'
+
+

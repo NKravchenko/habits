@@ -1,0 +1,57 @@
+{# Форма новых записей #}
+{#<div class="row">#}
+    {#<div class=" col-xs-11 col-sm-10 " style="min-width: 460px;"> &#123;&#35;Todo. Перенести стили в CSS &#35;&#125;#}
+        <div class="available-days">
+
+            {% for dayId in test_notes %}
+            <div class="row js-day-note-{{ dayId }}">
+                {{ include('AppBundle:Goal/detail:new_comments_item.html.twig') }}
+            </div>
+            {% endfor %}
+
+
+            {#&#123;&#35; ---------------------------------------------- &#35;&#125;#}
+            {#<div class="row">#}
+                {#<div class="col-xs-2 col-sm-2">#}
+                    {#<input type="text" class="form-control j-form-input-min-width" placeholder="28 мар" disabled>#}
+                {#</div>#}
+                {#<div class="col-xs-5 col-sm-6 j-padding-lr-null">#}
+                    {#<input type="text" class="form-control j-form-input-min-width" placeholder="Заметка">#}
+                {#</div>#}
+                {#<div class="col-xs-2 j-padding-lr-null">#}
+                    {#<div class="form-group">#}
+                        {#<select class="form-control">#}
+                            {#<option selected>Good</option>#}
+                            {#<option>Neutral</option>#}
+                            {#<option>Negative</option>#}
+                        {#</select>#}
+                    {#</div>#}
+                {#</div>#}
+                {#<div class="col-xs-1">#}
+                    {#<button type="submit" class="btn btn-success">Save</button>#}
+                {#</div>#}
+            {#</div>#}
+            {#&#123;&#35; ---------------------------------------------- &#35;&#125;#}
+            {#<div class="row">#}
+                {#<div class="col-xs-2 col-sm-2">#}
+                    {#<input type="text" class="form-control j-form-input-min-width" placeholder="27 мар" disabled>#}
+                {#</div>#}
+                {#<div class="col-xs-5 col-sm-6 j-padding-lr-null">#}
+                    {#<input type="text" class="form-control" placeholder="Заметка">#}
+                {#</div>#}
+                {#<div class="col-xs-2 j-padding-lr-null">#}
+                    {#<div class="form-group">#}
+                        {#<select class="form-control">#}
+                            {#<option selected>Good</option>#}
+                            {#<option>Neutral</option>#}
+                            {#<option>Negative</option>#}
+                        {#</select>#}
+                    {#</div>#}
+                {#</div>#}
+                {#<div class="col-xs-1">#}
+                    {#<button type="submit" class="btn btn-success">Save</button>#}
+                {#</div>#}
+            {#</div>#}
+        </div>
+    {#</div>#}
+{#</div>#}

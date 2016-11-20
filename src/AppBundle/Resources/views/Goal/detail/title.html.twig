@@ -1,0 +1,14 @@
+{#общий Заголовок для вьюх#}
+<h3 class="page-header">
+    <a href="{{ path('goal_edit', {'id': goal_info.id }) }}" class="btn btn-default" title="Настройка">
+        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+    </a>
+    {{ goal_info.title }}
+</h3>
+
+{#Показать статус Активен/Завершен TODO : Оформить визуально#}
+{% if goal_info.isActive %}
+    <span> Статус: Задача активна  </span>
+{% else %}
+    <span> Статус: Задача завершена  </span>
+{% endif %}

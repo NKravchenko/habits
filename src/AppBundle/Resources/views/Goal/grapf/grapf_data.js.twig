@@ -1,0 +1,39 @@
+{#https://gionkunz.github.io/chartist-js/#}
+
+<script>
+    var parsedHigh   = JSON.parse('{{ goal_grapf.valHigh|json_encode }}');
+    var parsedLow    = JSON.parse('{{ goal_grapf.valLow |json_encode }}');
+    var parsedLabels = JSON.parse('{{ goal_grapf.valX   |json_encode }}');
+    var parsedSeries = JSON.parse('{{ goal_grapf.valY   |json_encode }}');
+
+    var chart = new Chartist.Line('.ct-chart', {
+        labels: parsedLabels,
+
+        series: [
+            parsedSeries
+        ]
+
+    }, {
+        high: parsedHigh,
+        low: parsedLow,
+        fullWidth: true,
+//        chartPadding: {
+//            right: 10
+//        },
+        axisY: {
+            onlyInteger: true,
+            offset: 20
+//            labelInterpolationFnc: function(value) {
+//                return value + 'text'
+//            },
+//            scaleMinSpace: 15
+        }
+
+
+
+    });
+</script>
+
+
+
+

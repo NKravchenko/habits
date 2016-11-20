@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>{% block title %}Habits{% endblock %}</title>
+
+    {% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/jumbotron-narrow.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/sticky-footer.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+
+</head>
+
+<body>
+
+<div class="container j-min-width">
+    {# Панель меню #}
+    <div class="header clearfix">
+        <nav>
+            <ul class="nav nav-pills pull-right">
+                <li role="presentation" class="{% if app.request.attributes.get('_route') == 'goals_actual' %}active{% endif %}"><a href="{{ path('goals_actual') }}">Актуальные</a></li>
+                <li role="presentation" class="{% if app.request.attributes.get('_route') == 'goal_new' %}active{% endif %}"><a href="{{ path('goal_new') }}">Создать</a></li>
+                <li role="presentation" class="{% if app.request.attributes.get('_route') == 'goals_archive' %}active{% endif %}"><a href="{{ path('goals_archive') }}">Архив</a></li>
+                <li role="presentation"><a href="#">LogOut</a></li>
+            </ul>
+        </nav>
+        {#<h3 class="text-muted">Habits</h3>#}
+    </div>
+
+    {# Флеш сообщения #}
+    <div class="row">
+        <div class="col-sm-8">
+            {% for flash_message in app.session.flashbag.get('success') %}
+                <div class="alert alert-success">
+                    {{ flash_message }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    {% block body %}{% endblock %}
+
+</div>
+<!-- /container -->
+
+<footer class="footer">
+    <div class="container">
+        <p class="text-muted">sticky footer</p>
+    </div>
+</footer>
+
+{% block javascripts %}
+    <script src="{{ asset('js/jquery-1.12.1.min.js') }}"></script>
+    <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/common.js') }}"></script>
+
+    <script src="{{ asset('vendor/chartist/js/chartist.min.js') }}"></script>
+{% endblock %}
+
+
+</body>
+</html>

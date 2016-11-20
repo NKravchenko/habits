@@ -1,0 +1,22 @@
+<div class="col-xs-2 col-sm-2">
+    <input type="text" class="form-control j-form-input-min-width" placeholder="{{ dayId }} мар" disabled>
+</div>
+<div class="col-xs-5 col-sm-6 j-padding-lr-null">
+    <input type="text" class="form-control" id="js-day-note-{{ dayId }}" placeholder="Заметка">
+</div>
+<div class="col-xs-2 j-padding-lr-null">
+    <div class="form-group">
+        <select class="form-control" id="js-day-state-{{ dayId }}">
+            <option selected value="1">Good</option>
+            <option value="2">Neutral</option>
+            <option value="3">Negative</option>
+        </select>
+    </div>
+</div>
+<div class="col-xs-1">
+    <span class="btn btn-success js-button-note-save"
+            data-goal-id="{{ goal_id }}"
+            data-day-id="{{ dayId }}"
+            data-action="{{ path('goal_detail_note_save') }}"
+            >Save</span>
+</div>

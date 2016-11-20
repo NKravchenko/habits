@@ -1,0 +1,34 @@
+{#
+   ┌─────────────────┐ extends  ┌───────────┐
+   │_datepicker_layout.html.twig  │--------->│ base.html.twig    │
+   └─────────────────┘          └───────────┘
+             | extends
+   ┌───────────┐  embed ┌───────────────┐
+   │ *U are HERE       │<-------│ _panel_4form.html.twig   │
+   └───────────┘        └───────────────┘
+             | include
+   ┌───────────┐
+   │  form.html.twig   │
+   └───────────┘
+#}
+
+{% extends 'AppBundle:Goal:_datepicker_layout.html.twig' %}
+
+{% block body %}
+
+    {% embed "AppBundle:Goal/_main:_panel_4form.html.twig" %}
+        {% block panel_heading %}
+            Новая заметка
+        {% endblock %}
+
+        {% block path_form %}
+            {{ include('AppBundle:Goal/new_and_edit:form.html.twig') }}
+        {% endblock %}
+
+        {% block path_back %}
+            {{ path('goals_actual') }}
+        {% endblock %}
+
+    {% endembed %}
+
+{% endblock %}

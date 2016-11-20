@@ -1,0 +1,47 @@
+{#
+   ┌───────────┐ extends  ┌───────────┐
+   │ *U are HERE       │--------->│ base.html.twig     │
+   └───────────┘          └───────────┘
+             | embed
+   ┌────────────────┐
+   │ _panel_goals_list.html.twig│
+   └────────────────┘
+#}
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block body %}
+    <div class="row">
+
+        {% embed "AppBundle:Goal/_main:_panel_goals_list.html.twig" %}
+            {% block panel_heading %}
+                <h3 class="panel-title">Архив целей</h3>
+            {% endblock %}
+
+            {% block panel_body %}
+                {% if goals|length > 0 %}
+                    {% for goal in goals %}
+                        <a href="{{ path('goal_detail', {'id': goal.id }) }}"
+                                {% if goal.result == true %}
+                           class="list-group-item list-group-item-success">
+                            {% else %}
+                                class="list-group-item ">
+                            {% endif %}
+                            {{ goal.title|truncate(20) }} c {{ goal.dateAdd |date("j F") }} по {{ goal.dateStop |date("j F") }}
+                            <span class="glyphicon glyphicon-menu-right"></span>
+                        </a>
+                    {% endfor %}
+                    <div class="panel-footer">
+                        {{ knp_pagination_render(goals) }}
+                    </div>
+                {% else %}
+                    <h4> Нет завершенных целей </h4>
+                {% endif %}
+            {% endblock %}
+
+            {% block under_the_panel %}
+                <a href="{{ path('goals_actual') }}">Показать активные цели</a>
+            {% endblock %}
+
+        {% endembed %}
+    </div>
+{% endblock %}
